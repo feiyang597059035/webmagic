@@ -1,7 +1,9 @@
 package com.carwel.webmagic.mapper;
 
 import com.carwel.webmagic.model.Chapter;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface ChapterMapper {
     int deleteByPrimaryKey(Long id);
 
