@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carwel.webmagic.mapper.UpdateChapterMapper">
+  <resultMap id="BaseResultMap" type="com.carwel.webmagic.model.UpdateChapter">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="content_id" jdbcType="INTEGER" property="contentId" />
+    <result column="chapter_num" jdbcType="INTEGER" property="chapterNum" />
+    <result column="chapter_name" jdbcType="VARCHAR" property="chapterName" />
+    <result column="lastest_update_time" jdbcType="TIMESTAMP" property="lastestUpdateTime" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modifiled" jdbcType="TIMESTAMP" property="gmtModifiled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, content_id, chapter_num, chapter_name, lastest_update_time, gmt_created, gmt_modifiled
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from webmagic_lastest_update_chapter
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from webmagic_lastest_update_chapter
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.carwel.webmagic.model.UpdateChapter">
+    insert into webmagic_lastest_update_chapter (id, content_id, chapter_num, 
+      chapter_name, lastest_update_time, gmt_created, 
+      gmt_modifiled)
+    values (#{id,jdbcType=BIGINT}, #{contentId,jdbcType=INTEGER}, #{chapterNum,jdbcType=INTEGER}, 
+      #{chapterName,jdbcType=VARCHAR}, #{lastestUpdateTime,jdbcType=TIMESTAMP}, #{gmtCreated,jdbcType=TIMESTAMP}, 
+      #{gmtModifiled,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.carwel.webmagic.model.UpdateChapter">
+    insert into webmagic_lastest_update_chapter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="chapterNum != null">
+        chapter_num,
+      </if>
+      <if test="chapterName != null">
+        chapter_name,
+      </if>
+      <if test="lastestUpdateTime != null">
+        lastest_update_time,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="gmtModifiled != null">
+        gmt_modifiled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="chapterNum != null">
+        #{chapterNum,jdbcType=INTEGER},
+      </if>
+      <if test="chapterName != null">
+        #{chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastestUpdateTime != null">
+        #{lastestUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModifiled != null">
+        #{gmtModifiled,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.carwel.webmagic.model.UpdateChapter">
+    update webmagic_lastest_update_chapter
+    <set>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="chapterNum != null">
+        chapter_num = #{chapterNum,jdbcType=INTEGER},
+      </if>
+      <if test="chapterName != null">
+        chapter_name = #{chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastestUpdateTime != null">
+        lastest_update_time = #{lastestUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModifiled != null">
+        gmt_modifiled = #{gmtModifiled,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.carwel.webmagic.model.UpdateChapter">
+    update webmagic_lastest_update_chapter
+    set content_id = #{contentId,jdbcType=INTEGER},
+      chapter_num = #{chapterNum,jdbcType=INTEGER},
+      chapter_name = #{chapterName,jdbcType=VARCHAR},
+      lastest_update_time = #{lastestUpdateTime,jdbcType=TIMESTAMP},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modifiled = #{gmtModifiled,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

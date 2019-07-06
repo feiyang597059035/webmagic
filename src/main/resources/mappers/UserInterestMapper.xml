@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carwel.webmagic.mapper.UserInterestMapper">
+  <resultMap id="BaseResultMap" type="com.carwel.webmagic.model.UserInterest">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="content_id" jdbcType="BIGINT" property="contentId" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="category_type" jdbcType="INTEGER" property="categoryType" />
+    <result column="gmt_created" jdbcType="CHAR" property="gmtCreated" />
+    <result column="gmt_modifiled" jdbcType="CHAR" property="gmtModifiled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, content_id, delete_flag, category_type, gmt_created, gmt_modifiled
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from webmagic_user_interest
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from webmagic_user_interest
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.carwel.webmagic.model.UserInterest">
+    insert into webmagic_user_interest (id, user_id, content_id,
+      delete_flag, category_type, gmt_created, 
+      gmt_modifiled)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{contentId,jdbcType=BIGINT},
+      #{deleteFlag,jdbcType=INTEGER}, #{categoryType,jdbcType=INTEGER}, #{gmtCreated,jdbcType=CHAR}, 
+      #{gmtModifiled,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.carwel.webmagic.model.UserInterest">
+    insert into webmagic_user_interest
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+      <if test="categoryType != null">
+        category_type,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="gmtModifiled != null">
+        gmt_modifiled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="contentId != null">
+        #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="categoryType != null">
+        #{categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=CHAR},
+      </if>
+      <if test="gmtModifiled != null">
+        #{gmtModifiled,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.carwel.webmagic.model.UserInterest">
+    update webmagic_user_interest
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="categoryType != null">
+        category_type = #{categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=CHAR},
+      </if>
+      <if test="gmtModifiled != null">
+        gmt_modifiled = #{gmtModifiled,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.carwel.webmagic.model.UserInterest">
+    update webmagic_user_interest
+    set user_id = #{userId,jdbcType=VARCHAR},
+      content_id = #{contentId,jdbcType=BIGINT},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      category_type = #{categoryType,jdbcType=INTEGER},
+      gmt_created = #{gmtCreated,jdbcType=CHAR},
+      gmt_modifiled = #{gmtModifiled,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getListUserInterestByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from webmagic_user_interest
+    where user_id = #{id,jdbcType=BIGINT}
+  </select>
+
+</mapper>

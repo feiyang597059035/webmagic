@@ -1,0 +1,17 @@
+package com.carwel.webmagic.mapper;
+
+import com.carwel.webmagic.model.UpdateChapter;
+
+public interface UpdateChapterMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(UpdateChapter record);
+
+    int insertSelective(UpdateChapter record);
+
+    UpdateChapter selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(UpdateChapter record);
+
+    int updateByPrimaryKey(UpdateChapter record);
+}

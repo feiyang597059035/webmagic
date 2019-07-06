@@ -1,5 +1,5 @@
 server:
-  port: 9099
+  port: 8080
   context-path: /spider
 #logging:
 #  file: mylog.log
@@ -8,7 +8,7 @@ server:
 spring:
     datasource:
         name: test
-        url: jdbc:mysql://127.0.0.1:3306/test
+        url: jdbc:mysql://47.105.159.172:3306/test
         username: root
         password: 123456
         # 使用druid数据源
@@ -28,8 +28,8 @@ spring:
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
 mybatis:
-  mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.example.firstdemo
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.carwel.webmagic.model
 
 #pagehelper分页插件
 pagehelper:
