@@ -14,4 +14,14 @@ public class UpdateChapterDaoImpl implements UpdateChapterDao {
     public int insert(UpdateChapter record) {
         return updateChapterMapper.insert(record);
     }
+
+    @Override
+    public UpdateChapter getUpdateChapterByContentId(Integer contentId) {
+        return updateChapterMapper.getUpdateChapterByContentId(contentId);
+    }
+
+    @Override
+    public int updateUpdateChapter(UpdateChapter updateChapter) {
+        return updateChapterMapper.updateByPrimaryKeySelective(updateChapter);
+    }
 }

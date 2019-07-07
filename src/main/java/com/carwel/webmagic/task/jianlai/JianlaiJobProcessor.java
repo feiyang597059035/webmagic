@@ -40,14 +40,20 @@ public class JianlaiJobProcessor implements PageProcessor {
         if (paramMap!=null&&paramMap.get("start")!=null){
             start=(Integer) paramMap.get("start");
         }
+        Integer contentId=0;
+        if (paramMap!=null&&paramMap.get("contentId")!=null){
+            contentId=(Integer) paramMap.get("contentId");
+        }
+
         //如果是start =0 表示第一次进来 在目录页
         if (start==0){
             String latestUpdateTime= page.getHtml().xpath("head//meta[@property='og:novel:update_time']//@content").toString();
             String latestChapterName=page.getHtml().xpath("head//meta[@property='og:novel:latest_chapter_name" +
                     "']//@content").toString();
             ChapterInfoDTO chapterInfoDTO=new ChapterInfoDTO();
-            chapterInfoDTO.setChaperName(latestChapterName);
+            chapterInfoDTO.setChapterName(latestChapterName);
             chapterInfoDTO.setUpdateTime(latestUpdateTime);
+            chapterInfoDTO.setContentId(contentId);
             page.putField("chapterInfoDTO",chapterInfoDTO);
             //获取所有的链接
           List<String> subLinkList= page.getHtml().xpath("dl[@class='chapterlist']//dd//a//@href").all();
@@ -62,6 +68,7 @@ public class JianlaiJobProcessor implements PageProcessor {
                   BeanUtils.copyProperties(paramMap,subParamMap);
                   subParamMap.put("start",1);
                   subParamMap.put("num",i+1);
+                  subParamMap.put("contentId",contentId);
                   targetRequest.setExtras(subParamMap);
                   page.addTargetRequest(targetRequest);
                   break;
@@ -78,8 +85,8 @@ public class JianlaiJobProcessor implements PageProcessor {
                      stringBuffer.append(subContextList.get(j));
             }
             ChapterInfoDTO chapterInfoDTO=new ChapterInfoDTO();
-            chapterInfoDTO.setChaperName(subTitle);
-            chapterInfoDTO.setChaperContext(stringBuffer.toString());
+            chapterInfoDTO.setChapterName(subTitle);
+            chapterInfoDTO.setChapterContext(stringBuffer.toString());
             page.putField("chapterInfoDTO",chapterInfoDTO);
         }
     }
@@ -101,6 +108,7 @@ public class JianlaiJobProcessor implements PageProcessor {
         Request request=new Request();
         Map<String,Object> map=new HashMap<>();
         map.put("num",spiderInfoDTO.getNum());
+        map.put("contentId",spiderInfoDTO.getContentId());
         request.setExtras(map);
         request.setUrl(spiderInfoDTO.getUrl());
         Spider spider =

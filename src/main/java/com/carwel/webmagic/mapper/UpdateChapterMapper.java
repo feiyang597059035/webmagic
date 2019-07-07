@@ -13,6 +13,8 @@ public interface UpdateChapterMapper {
 
     UpdateChapter selectByPrimaryKey(Long id);
 
+    UpdateChapter getUpdateChapterByContentId(Integer contentId);
+
     int updateByPrimaryKeySelective(UpdateChapter record);
 
     int updateByPrimaryKey(UpdateChapter record);

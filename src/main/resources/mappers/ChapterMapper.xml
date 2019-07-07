@@ -8,7 +8,7 @@
     <result column="chapter_context" jdbcType="VARCHAR" property="chapterContext" />
     <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
     <result column="gmt_modifild" jdbcType="TIMESTAMP" property="gmtModifild" />
-    <result column="content_id" jdbcType="BIGINT" property="contentId" />
+    <result column="content_id" jdbcType="INTEGER" property="contentId" />
   </resultMap>
   <sql id="Base_Column_List">
     id, chapter_num, chapter_name, chapter_context, gmt_created, gmt_modifild, content_id
@@ -29,7 +29,7 @@
       content_id)
     values (#{id,jdbcType=BIGINT}, #{chapterNum,jdbcType=INTEGER}, #{chapterName,jdbcType=VARCHAR}, 
       #{chapterContext,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModifild,jdbcType=TIMESTAMP}, 
-      #{contentId,jdbcType=BIGINT})
+      #{contentId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.carwel.webmagic.model.Chapter">
     insert into webmagic_chapter
@@ -99,7 +99,7 @@
         gmt_modifild = #{gmtModifild,jdbcType=TIMESTAMP},
       </if>
       <if test="contentId != null">
-        content_id = #{contentId,jdbcType=BIGINT},
+        content_id = #{contentId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -111,7 +111,7 @@
       chapter_context = #{chapterContext,jdbcType=VARCHAR},
       gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
       gmt_modifild = #{gmtModifild,jdbcType=TIMESTAMP},
-      content_id = #{contentId,jdbcType=BIGINT}
+      content_id = #{contentId,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 

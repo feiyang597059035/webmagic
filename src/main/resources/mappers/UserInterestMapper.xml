@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="com.carwel.webmagic.model.UserInterest">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="content_id" jdbcType="BIGINT" property="contentId" />
+    <result column="content_id" jdbcType="INTEGER" property="contentId" />
     <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
     <result column="category_type" jdbcType="INTEGER" property="categoryType" />
-    <result column="gmt_created" jdbcType="CHAR" property="gmtCreated" />
-    <result column="gmt_modifiled" jdbcType="CHAR" property="gmtModifiled" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modifiled" jdbcType="TIMESTAMP" property="gmtModifiled" />
   </resultMap>
   <sql id="Base_Column_List">
     id, user_id, content_id, delete_flag, category_type, gmt_created, gmt_modifiled
@@ -27,9 +27,9 @@
     insert into webmagic_user_interest (id, user_id, content_id,
       delete_flag, category_type, gmt_created, 
       gmt_modifiled)
-    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{contentId,jdbcType=BIGINT},
-      #{deleteFlag,jdbcType=INTEGER}, #{categoryType,jdbcType=INTEGER}, #{gmtCreated,jdbcType=CHAR}, 
-      #{gmtModifiled,jdbcType=CHAR})
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{contentId,jdbcType=INTEGER},
+      #{deleteFlag,jdbcType=INTEGER}, #{categoryType,jdbcType=INTEGER}, #{gmtCreated,jdbcType=TIMESTAMP},
+      #{gmtModifiled,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.carwel.webmagic.model.UserInterest">
     insert into webmagic_user_interest
@@ -64,7 +64,7 @@
         #{userId,jdbcType=VARCHAR},
       </if>
       <if test="contentId != null">
-        #{contentId,jdbcType=BIGINT},
+        #{contentId,jdbcType=INTEGER},
       </if>
       <if test="deleteFlag != null">
         #{deleteFlag,jdbcType=INTEGER},
@@ -73,10 +73,10 @@
         #{categoryType,jdbcType=INTEGER},
       </if>
       <if test="gmtCreated != null">
-        #{gmtCreated,jdbcType=CHAR},
+        #{gmtCreated,jdbcType=TIMESTAMP},
       </if>
       <if test="gmtModifiled != null">
-        #{gmtModifiled,jdbcType=CHAR},
+        #{gmtModifiled,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -87,7 +87,7 @@
         user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="contentId != null">
-        content_id = #{contentId,jdbcType=BIGINT},
+        content_id = #{contentId,jdbcType=INTEGER},
       </if>
       <if test="deleteFlag != null">
         delete_flag = #{deleteFlag,jdbcType=INTEGER},
@@ -96,10 +96,10 @@
         category_type = #{categoryType,jdbcType=INTEGER},
       </if>
       <if test="gmtCreated != null">
-        gmt_created = #{gmtCreated,jdbcType=CHAR},
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
       </if>
       <if test="gmtModifiled != null">
-        gmt_modifiled = #{gmtModifiled,jdbcType=CHAR},
+        gmt_modifiled = #{gmtModifiled,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -107,11 +107,11 @@
   <update id="updateByPrimaryKey" parameterType="com.carwel.webmagic.model.UserInterest">
     update webmagic_user_interest
     set user_id = #{userId,jdbcType=VARCHAR},
-      content_id = #{contentId,jdbcType=BIGINT},
+      content_id = #{contentId,jdbcType=INTEGER},
       delete_flag = #{deleteFlag,jdbcType=INTEGER},
       category_type = #{categoryType,jdbcType=INTEGER},
-      gmt_created = #{gmtCreated,jdbcType=CHAR},
-      gmt_modifiled = #{gmtModifiled,jdbcType=CHAR}
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modifiled = #{gmtModifiled,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 
