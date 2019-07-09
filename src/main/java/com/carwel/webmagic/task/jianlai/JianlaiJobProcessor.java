@@ -3,7 +3,6 @@ package com.carwel.webmagic.task.jianlai;
 import com.carwel.webmagic.dto.ChapterInfoDTO;
 import com.carwel.webmagic.dto.SpiderInfoDTO;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import us.codecraft.webmagic.Page;
@@ -24,8 +23,7 @@ import java.util.Map;
  */
 @Component
 public class JianlaiJobProcessor implements PageProcessor {
-    @Autowired
-    private  JianlaiSaveInfoPinple jianlaiSaveInfoPinple;
+
     @Override
     public void process(Page page) {
 
@@ -35,6 +33,10 @@ public class JianlaiJobProcessor implements PageProcessor {
         int num=0;
         if (paramMap!=null&&paramMap.get("num")!=null){
              num=(Integer) paramMap.get("num");
+        }
+        int originalNum=0;
+        if (paramMap!=null&&paramMap.get("originalNum")!=null){
+            originalNum=(Integer) paramMap.get("originalNum");
         }
         int start=0;
         if (paramMap!=null&&paramMap.get("start")!=null){
@@ -69,6 +71,7 @@ public class JianlaiJobProcessor implements PageProcessor {
                   subParamMap.put("start",1);
                   subParamMap.put("num",i+1);
                   subParamMap.put("contentId",contentId);
+                  subParamMap.put("originalNum",originalNum);
                   targetRequest.setExtras(subParamMap);
                   page.addTargetRequest(targetRequest);
                   break;
@@ -84,9 +87,12 @@ public class JianlaiJobProcessor implements PageProcessor {
             for (int j=0;j<subContextList.size();j++){
                      stringBuffer.append(subContextList.get(j));
             }
+
             ChapterInfoDTO chapterInfoDTO=new ChapterInfoDTO();
             chapterInfoDTO.setChapterName(subTitle);
             chapterInfoDTO.setChapterContext(stringBuffer.toString());
+            chapterInfoDTO.setContentId(contentId);
+            chapterInfoDTO.setChapterNum(num-originalNum);
             page.putField("chapterInfoDTO",chapterInfoDTO);
         }
     }
@@ -109,6 +115,7 @@ public class JianlaiJobProcessor implements PageProcessor {
         Map<String,Object> map=new HashMap<>();
         map.put("num",spiderInfoDTO.getNum());
         map.put("contentId",spiderInfoDTO.getContentId());
+        map.put("originalNum",spiderInfoDTO.getOriginalNum());
         request.setExtras(map);
         request.setUrl(spiderInfoDTO.getUrl());
         Spider spider =

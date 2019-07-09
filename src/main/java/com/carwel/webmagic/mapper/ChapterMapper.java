@@ -2,6 +2,9 @@ package com.carwel.webmagic.mapper;
 
 import com.carwel.webmagic.model.Chapter;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface ChapterMapper {
@@ -16,4 +19,6 @@ public interface ChapterMapper {
     int updateByPrimaryKeySelective(Chapter record);
 
     int updateByPrimaryKey(Chapter record);
+
+    List<Chapter> getChapterByChapterNum(@Param("chapterNum") Integer chapterNum,@Param("contentId") Integer contentId );
 }

@@ -14,6 +14,8 @@ public class DateTimeUtils {
     public static final String            DATA_FORMAT_yyMMddHHmmss = "yyyyMMddHHmmss";
     public static final String            DATE_TIME_STYLE          = "yyyy-MM-dd HH:mm:ss";
     public static final String            DATE_TIME_STYLE_yyyyMMddHHmmSSS          = "yyyyMMddHHmmssSSS";
+
+    public static final String            DATE_TIME_MINUTES_STYLE          = "yyyy-MM-dd HH:mm";
  /*   private static final SimpleDateFormat DATE_TIME_FORMAT         = new SimpleDateFormat(DATE_TIME_STYLE);*/
 
 

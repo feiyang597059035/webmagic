@@ -27,7 +27,7 @@ public class UpdateChapterManagerImpl implements UpdateChapterManager {
         Date updateTime=new Date();
         if (StringUtils.isNotBlank(chapterInfoDTO.getUpdateTime())){
              updateTime= DateTimeUtils.formatDate(chapterInfoDTO.getUpdateTime(),
-                    DateTimeUtils.DATE_TIME_STYLE);
+                    DateTimeUtils.DATE_TIME_MINUTES_STYLE);
 
         }
         UpdateChapter updateChapter=updateChapterDao.getUpdateChapterByContentId(chapterInfoDTO.getContentId());

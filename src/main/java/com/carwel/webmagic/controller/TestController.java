@@ -40,6 +40,6 @@ public class TestController {
     @RequestMapping("/jianlaiSpider")
     public  boolean  jianLaiSpider(@RequestBody SpiderInfoDTO spiderInfoDTO){
         boolean result=spiderService.spideJianlai(spiderInfoDTO);
-        return  false;
+        return  result;
     };
 }

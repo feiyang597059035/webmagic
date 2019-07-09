@@ -20,6 +20,6 @@ public class SpiderServiceImpl implements SpiderService {
     @Override
     public boolean spideJianlai(SpiderInfoDTO spiderInfoDTO) {
         jianlaiJobProcessor.startJianlaiJob(spiderInfoDTO);
-        return false;
+        return true;
     }
 }

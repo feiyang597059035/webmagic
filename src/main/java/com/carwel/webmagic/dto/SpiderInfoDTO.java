@@ -12,4 +12,6 @@ public class SpiderInfoDTO extends  BaseDomain{
     private Integer num;
     /**内容id**/
     private Integer contentId;
+
+    private Integer originalNum;
 }
