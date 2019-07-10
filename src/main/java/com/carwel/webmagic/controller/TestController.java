@@ -6,6 +6,7 @@ import com.carwel.webmagic.dto.SpiderInfoDTO;
 
 import com.carwel.webmagic.manager.ChapterManager;
 import com.carwel.webmagic.model.test;
+import com.carwel.webmagic.service.SendMQService;
 import com.carwel.webmagic.testtask.xiaoshuoJianLaiTask;
 import com.carwel.webmagic.service.SpiderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class TestController {
     private TestDao testDao;
     @Autowired
     private ChapterManager chapterManager;
+    @Autowired
+    private SendMQService sendMQService;
 
     @RequestMapping("/test")
     public test test(){
@@ -42,4 +45,13 @@ public class TestController {
         boolean result=spiderService.spideJianlai(spiderInfoDTO);
         return  result;
     };
+
+
+    @RequestMapping("/sendMQ")
+    public  boolean  sendMq(String topic){
+        sendMQService.sendMQMessages(topic,"test","eee");
+        return  true;
+    };
+
+
 }

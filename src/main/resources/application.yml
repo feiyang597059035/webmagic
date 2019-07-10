@@ -38,3 +38,13 @@ pagehelper:
     reasonable: false   
     supportMethodsArguments: true
     params: count=countSql
+
+apache:
+  rocketmq:
+    consumer:
+      spiderConsumerGroup: spiderConsumerGroup
+    producer:
+      spiderproducerGroup: spiderProducerGroup
+    namesrvAddr: 47.105.159.172:9876
+    topic:
+      spider_topic: webmagic-spider
