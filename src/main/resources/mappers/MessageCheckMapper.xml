@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carwel.webmagic.mapper.MessageCheckMapper">
+  <resultMap id="BaseResultMap" type="com.carwel.webmagic.model.MessageCheck">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="message_id" jdbcType="VARCHAR" property="messageId" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modifiled" jdbcType="TIMESTAMP" property="gmtModifiled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, message_id, gmt_created, gmt_modifiled
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="com.carwel.webmagic.model.MessageCheck">
+    delete from webmagic_message_check
+    where id = #{id,jdbcType=BIGINT}
+      and message_id = #{messageId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.carwel.webmagic.model.MessageCheck">
+    insert into webmagic_message_check (id, message_id,gmt_created,gmt_modifiled)
+    values (#{id,jdbcType=BIGINT}, #{messageId,jdbcType=VARCHAR},#{gmtCreated,jdbcType=TIMESTAMP},
+    #{gmtModifiled,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.carwel.webmagic.model.MessageCheck">
+    insert into webmagic_message_check
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="messageId != null">
+        message_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="messageId != null">
+        #{messageId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getListMessageCheck" parameterType="com.carwel.webmagic.model.MessageCheck" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from webmagic_message_check
+    <include refid="pageWhere" />
+  </select>
+
+
+  <sql id="pageWhere">
+    <trim prefix="where" prefixOverrides="and">
+      <if test="id != null" >
+        and  id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="messageId != null" >
+        and  message_id = #{messageId,jdbcType=VARCHAR}
+      </if>
+
+    </trim>
+  </sql>
+</mapper>

@@ -1,8 +1,11 @@
 package com.carwel.webmagic.service.impl;
 
-import com.carwel.webmagic.config.SpiderMQProducer;
+
+import com.carwel.webmagic.config.SpiderMQProducerTransaction;
+import com.carwel.webmagic.dto.Enum.MQResultTypeEnum;
 import com.carwel.webmagic.service.SendMQService;
 import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.client.producer.SendStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +13,9 @@ import org.springframework.stereotype.Service;
 public class SendMQServiceImpl implements SendMQService {
 
     @Autowired
-    private SpiderMQProducer spiderMQProducer;
+    private SpiderMQProducerTransaction spiderMQProducerTransaction;
     /**
-     * 发送mq 消息
+     * 发送mq 事务消息
      *
      * @param topic
      * @param tag
@@ -20,8 +23,25 @@ public class SendMQServiceImpl implements SendMQService {
      * @return
      */
     @Override
-    public SendResult sendMQMessages(String topic, String tag, String msg) {
+    public SendResult sendMQTransactionMessage(String topic, String tag, String msg,Integer type) {
 
-        return spiderMQProducer.sendMessage(topic,tag,msg);
+        SendResult sendResult= spiderMQProducerTransaction.sendMessage(topic,tag,msg);
+        return  sendResult;
+
     }
+
+    /**
+     * 事务消息是否回滚
+     *
+     * @param sendResult
+     * @param messageResultType mq事务消息  MQResultType
+     * @return
+     */
+    @Override
+    public boolean endTransactionMessage(SendResult sendResult, Integer messageResultType) {
+        spiderMQProducerTransaction.endTransactionMessage(sendResult, messageResultType);
+        return true;
+    }
+
+
 }

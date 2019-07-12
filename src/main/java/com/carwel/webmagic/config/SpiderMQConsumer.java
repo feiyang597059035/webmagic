@@ -44,8 +44,9 @@ public class SpiderMQConsumer {
             consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
             consumer.setConsumeThreadMin(1);
             consumer.setConsumeThreadMax(1);
+            consumer.registerMessageListener(new MessageListenerImpl());
 
-            consumer.registerMessageListener((MessageListenerConcurrently)(list, context) -> {
+          /*  consumer.registerMessageListener((MessageListenerConcurrently)(list, context) -> {
                 try {
                     for (MessageExt messageExt : list) {
                         System.out.println(Thread.currentThread().getName());
@@ -61,7 +62,7 @@ public class SpiderMQConsumer {
                     return ConsumeConcurrentlyStatus.RECONSUME_LATER; // 稍后再试
                 }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS; // 消费成功
-            });
+            });*/
             consumer.start();
         } catch (Exception e) {
             e.printStackTrace();

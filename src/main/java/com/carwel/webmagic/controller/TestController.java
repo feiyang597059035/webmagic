@@ -48,8 +48,8 @@ public class TestController {
 
 
     @RequestMapping("/sendMQ")
-    public  boolean  sendMq(String topic){
-        sendMQService.sendMQMessages(topic,"test","eee");
+    public  boolean  sendMq(String topic,Integer type){
+        sendMQService.sendMQTransactionMessage(topic,"test","eee"+type,type);
         return  true;
     };
 
