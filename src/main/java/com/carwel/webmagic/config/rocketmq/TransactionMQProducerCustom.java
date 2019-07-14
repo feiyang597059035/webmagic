@@ -1,4 +1,4 @@
-package com.carwel.webmagic.config;
+package com.carwel.webmagic.config.rocketmq;
 
 import com.carwel.webmagic.dto.Enum.MQResultTypeEnum;
 import org.apache.rocketmq.client.exception.MQBrokerException;

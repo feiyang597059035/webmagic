@@ -1,11 +1,9 @@
 package com.carwel.webmagic.service.impl;
 
 
-import com.carwel.webmagic.config.SpiderMQProducerTransaction;
-import com.carwel.webmagic.dto.Enum.MQResultTypeEnum;
+import com.carwel.webmagic.config.rocketmq.SpiderMQProducerTransaction;
 import com.carwel.webmagic.service.SendMQService;
 import org.apache.rocketmq.client.producer.SendResult;
-import org.apache.rocketmq.client.producer.SendStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.carwel.webmagic.config;
+package com.carwel.webmagic.config.rocketmq;
 
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;

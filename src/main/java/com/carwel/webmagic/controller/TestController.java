@@ -9,6 +9,7 @@ import com.carwel.webmagic.model.test;
 import com.carwel.webmagic.service.SendMQService;
 import com.carwel.webmagic.testtask.xiaoshuoJianLaiTask;
 import com.carwel.webmagic.service.SpiderService;
+import com.carwel.webmagic.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,8 @@ public class TestController {
     private ChapterManager chapterManager;
     @Autowired
     private SendMQService sendMQService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @RequestMapping("/test")
     public test test(){
@@ -50,6 +53,11 @@ public class TestController {
     @RequestMapping("/sendMQ")
     public  boolean  sendMq(String topic,Integer type){
         sendMQService.sendMQTransactionMessage(topic,"test","eee"+type,type);
+        return  true;
+    };
+    @RequestMapping("/redis")
+    public  boolean  redis(String key,String value){
+        redisUtil.set(key,value,60);
         return  true;
     };
 

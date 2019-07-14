@@ -48,3 +48,11 @@ apache:
     namesrvAddr: 47.105.159.172:9876
     topic:
       spider_topic: webmagic-spider
+redis:
+  host: 47.105.159.172
+  port: 6379
+  timeout: 300
+  password: 123456
+  poolMaxTotal: 10
+  poolMaxIdle: 10
+  poolMaxWait: 3
