@@ -28,6 +28,7 @@ import org.apache.rocketmq.common.message.MessageExt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -49,6 +50,7 @@ public class TransactionExecuterImpl implements TransactionListener {
 
     @Override
     public LocalTransactionState checkLocalTransaction(MessageExt messageExt) {
+        log.info("回查mq:"+new Date());
         log.info("checkLocalTransaction messageExt={}", JSON.toJSONString(messageExt));
         LocalTransactionState localTransactionState=LocalTransactionState.UNKNOW;
         String messageId=messageExt.getTransactionId();
@@ -62,6 +64,7 @@ public class TransactionExecuterImpl implements TransactionListener {
             localTransactionState=LocalTransactionState.ROLLBACK_MESSAGE;
         }
         log.info("checkLocalTransaction messageExt={},result={}", JSON.toJSONString(messageExt),localTransactionState);
+        log.info("回查mq:"+new Date());
         return localTransactionState;
     }
 }

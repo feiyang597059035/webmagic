@@ -1,5 +1,6 @@
 package com.carwel.webmagic.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.carwel.webmagic.dao.TestDao;
 import com.carwel.webmagic.dto.ChapterInfoDTO;
 import com.carwel.webmagic.dto.SpiderInfoDTO;
@@ -51,8 +52,14 @@ public class TestController {
 
 
     @RequestMapping("/sendMQ")
-    public  boolean  sendMq(String topic,Integer type){
-        sendMQService.sendMQTransactionMessage(topic,"test","eee"+type,type);
+    public  boolean  sendMq(String topic,String tag){
+        SpiderInfoDTO spiderInfoDTO=new SpiderInfoDTO();
+        spiderInfoDTO.setPageNum(0);
+        spiderInfoDTO.setUrl("http://www.jianlaixiaoshuo.com/");
+        spiderInfoDTO.setContentId(1);
+        spiderInfoDTO.setOriginalNum(49);
+        String msg= JSON.toJSONString(spiderInfoDTO);
+        sendMQService.sendMQTransactionMessage(topic,tag,msg);
         return  true;
     };
     @RequestMapping("/redis")

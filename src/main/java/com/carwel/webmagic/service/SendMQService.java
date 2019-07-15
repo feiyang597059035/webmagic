@@ -10,8 +10,17 @@ public interface SendMQService {
      * @param msg
      * @return
      */
-   SendResult sendMQTransactionMessage(String topic, String tag, String msg,Integer type);
+   SendResult sendMQTransactionMessage(String topic, String tag, String msg);
 
+
+    /**
+     * 发送mq 消息
+     * @param topic
+     * @param tag
+     * @param msg
+     * @return
+     */
+    SendResult sendMessage(String topic, String tag, String msg);
     /**
      * 事务消息是否回滚
      * @param sendResult

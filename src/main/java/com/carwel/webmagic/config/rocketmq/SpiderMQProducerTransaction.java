@@ -68,8 +68,31 @@ public class SpiderMQProducerTransaction {
             e.printStackTrace();
         }
     }
+    public  SendResult sendMessage(String topic, String tag, String msg){
+        Message message = new Message(topic, tag, msg.getBytes());
+        SendResult sendResult = null;
+        try {
+            sendResult = defaultMQProducer.send(message, 10000);
 
-    public SendResult sendMessage(String topic, String tag, String msg) {
+            logger.info("生产者" + sendResult.toString());
+
+        } catch (MQClientException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (RemotingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (MQBrokerException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return sendResult;
+    }
+
+    public SendResult sendTransactionMessage(String topic, String tag, String msg) {
         Message message = new Message(topic, tag, msg.getBytes());
         SendResult sendResult = null;
         try {
