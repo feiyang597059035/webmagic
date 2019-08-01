@@ -24,7 +24,7 @@ public class MessageListenerImpl implements MessageListenerConcurrently {
         try {
             for (MessageExt messageExt : msgs) {
 
-                if ("jianlai".equals(messageExt.getTags())){
+                if ("jianlai".equals(messageExt.getTags())&&messageExt.getReconsumeTimes()<=3){
                     String messageBody = new String(messageExt.getBody(), RemotingHelper.DEFAULT_CHARSET);
                     if (StringUtils.isNotBlank(messageBody)){
                         JSONObject jsonObject=JSON.parseObject(messageBody);
@@ -32,12 +32,7 @@ public class MessageListenerImpl implements MessageListenerConcurrently {
                         spiderManager.spideJianlai(spiderInfoDTO);
                     }
                 }
-                System.out.println(Thread.currentThread().getName());
-                System.out.println("messageExt: " + messageExt);// 输出消息内容
 
-                String messageBody = new String(messageExt.getBody(), RemotingHelper.DEFAULT_CHARSET);
-
-                System.out.println("111消费响应：msgId : " + messageExt.getMsgId() + ", msgBody : " + messageBody);//
                 // 输出消息内容
             }
         } catch (Exception e) {

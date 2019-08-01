@@ -13,8 +13,12 @@ public class ChapterDaoImpl implements ChapterDao {
     @Autowired
     private ChapterMapper chapterMapper;
     @Override
-    public int insert(Chapter record) {
-        return chapterMapper.insert(record);
+    public Long insert(Chapter record) {
+        int i= chapterMapper.insert(record);
+        if (i>0){
+            return  record.getId();
+        }
+        return  0L;
     }
 
     /**

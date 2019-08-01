@@ -24,6 +24,9 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.carwel.webmagic.model.Chapter">
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
     insert into webmagic_chapter (id, chapter_num, chapter_name, 
       chapter_context, gmt_created, gmt_modifild, 
       content_id)

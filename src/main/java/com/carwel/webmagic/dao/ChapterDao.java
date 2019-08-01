@@ -5,7 +5,7 @@ import com.carwel.webmagic.model.Chapter;
 import java.util.List;
 
 public interface ChapterDao {
-    int insert(Chapter record);
+    Long insert(Chapter record);
 
     /**
      * 根据章节和内容id 获取

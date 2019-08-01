@@ -48,6 +48,7 @@ apache:
     namesrvAddr: 47.105.159.172:9876
     topic:
       spider_topic: webmagic-spider
+      es_topic: es
 redis:
   host: 47.105.159.172
   port: 6379
@@ -56,3 +57,10 @@ redis:
   poolMaxTotal: 10
   poolMaxIdle: 10
   poolMaxWait: 3
+
+elasticsearch:
+     ip: 47.105.159.172
+     port: 9300
+     pool: 5
+     cluster:
+        name: es
