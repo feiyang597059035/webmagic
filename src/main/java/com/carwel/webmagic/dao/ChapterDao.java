@@ -14,4 +14,6 @@ public interface ChapterDao {
      * @return
      */
     List<Chapter> getChapterByChapterNum(Integer chapterNum, Integer contentId );
+
+    Chapter getChapterInfoById(Long id);
 }

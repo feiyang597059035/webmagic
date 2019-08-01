@@ -43,6 +43,7 @@ apache:
   rocketmq:
     consumer:
       spiderConsumerGroup: spiderConsumerGroup
+      esConsumerGroup: esConsumerGroup
     producer:
       spiderproducerGroup: spiderProducerGroup
     namesrvAddr: 47.105.159.172:9876
@@ -64,3 +65,7 @@ elasticsearch:
      pool: 5
      cluster:
         name: es
+     index:
+       chapter_index: chapter
+     type:
+        chapter_type: chapter

@@ -1,5 +1,7 @@
 package com.carwel.webmagic.util;
 
+import com.alibaba.fastjson.JSON;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -72,6 +74,9 @@ public class DateTimeUtils {
         String str = "2019-04-22 17:36:18";
         boolean latestWeek = isLatestWeek(formatDate(str, DATE_TIME_STYLE), new Date());
         System.out.println(latestWeek);
+        Long id=4L;
+        String yy= JSON.toJSONString(id);
+
     }
 
     /**

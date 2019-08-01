@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.carwel.webmagic.config.BeanContext;
 import com.carwel.webmagic.dto.ChapterInfoDTO;
 import com.carwel.webmagic.manager.ChapterManager;
+import com.carwel.webmagic.manager.CommonManager;
 import com.carwel.webmagic.manager.UpdateChapterManager;
+import com.carwel.webmagic.manager.impl.CommonManagerImpl;
 import com.carwel.webmagic.manager.impl.UpdateChapterManagerImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,8 @@ public class JianlaiSaveInfoPinple implements Pipeline {
 
              }else {
                  log.info("爬取章节：result={}", JSON.toJSONString(chapterInfoDTO));
-                 ChapterManager chapterManager=BeanContext.getBean(ChapterManager.class);
-                 chapterManager.insertJianlaiChapter(chapterInfoDTO);
+                 CommonManager commonManager=BeanContext.getBean(CommonManagerImpl.class);
+                 commonManager.insertJianlaiChapter(chapterInfoDTO);
 
              }
          }

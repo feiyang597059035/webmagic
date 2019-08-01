@@ -32,4 +32,9 @@ public class ChapterDaoImpl implements ChapterDao {
     public List<Chapter> getChapterByChapterNum(Integer chapterNum, Integer contentId) {
         return chapterMapper.getChapterByChapterNum(chapterNum,contentId);
     }
+
+    @Override
+    public Chapter getChapterInfoById(Long id) {
+        return chapterMapper.selectByPrimaryKey(id);
+    }
 }

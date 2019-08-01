@@ -14,4 +14,9 @@ public class ContentDaoImpl implements ContentDao {
     public int insert(Content record) {
         return contentMapper.insert(record);
     }
+
+    @Override
+    public Content getContentById(Long id) {
+        return contentMapper.selectByPrimaryKey(id);
+    }
 }

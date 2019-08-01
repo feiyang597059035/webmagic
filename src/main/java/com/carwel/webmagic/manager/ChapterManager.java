@@ -1,6 +1,8 @@
 package com.carwel.webmagic.manager;
 
+import com.carwel.webmagic.dto.ChapterESInfoDTO;
 import com.carwel.webmagic.dto.ChapterInfoDTO;
+
 import org.apache.rocketmq.client.producer.SendResult;
 
 /**
@@ -13,4 +15,11 @@ public interface ChapterManager {
      * @return
      */
     SendResult insertJianlaiChapter(ChapterInfoDTO chapterInfoDTO);
+
+    /**
+     * 获取es 索引信息
+     * @param id
+     * @return
+     */
+    ChapterESInfoDTO getChapterESInfoByChapterId(Long id);
 }
