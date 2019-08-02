@@ -1,17 +1,25 @@
 package com.carwel.webmagic.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.carwel.webmagic.config.ConfigConstant;
+import com.carwel.webmagic.dto.ChapterESInfoDTO;
 import com.carwel.webmagic.util.DateTimeUtils;
 import com.carwel.webmagic.util.ElasticsearchUtil;
+import com.carwel.webmagic.util.MapTool;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.lucene.search.BooleanQuery;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import java.util.Date;
-import java.util.HashMap;
+
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -63,6 +71,28 @@ public class EsController {
         jsonObject.put("date", new Date());
         String id = ElasticsearchUtil.addData(jsonObject, indexName, esType, jsonObject.getString("id"));
         return id;
+    }
+
+    @RequestMapping("/getData")
+    @ResponseBody
+    public String getData(String id){
+        if(StringUtils.isNotBlank(id)) {
+            BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+            boolQuery.must(QueryBuilders.termQuery("contentName","剑来"));
+            List<Map<String, Object>> list=ElasticsearchUtil.searchListData(ConfigConstant.getEsChapterIndex(),
+                    ConfigConstant.getEsChapterType(),boolQuery,5,null,null,null);
+
+          /*  Map<String, Object> map= ElasticsearchUtil.searchDataById(ConfigConstant.getEsChapterIndex(),
+                    ConfigConstant.getEsChapterType(),id,null);
+               ChapterESInfoDTO chapterESInfoDTO= MapTool.map2Bean(map,ChapterESInfoDTO.class);
+                    */
+
+
+            return JSONObject.toJSONString(list);
+        }
+        else{
+            return "id为空";
+        }
     }
 
    /* *//**

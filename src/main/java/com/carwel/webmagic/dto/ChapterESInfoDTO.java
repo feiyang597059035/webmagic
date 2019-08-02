@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class ChapterESInfoDTO extends  BaseDomain {
+    private Long id;
     private String gmtModifild;
     /**
      * 章节名称

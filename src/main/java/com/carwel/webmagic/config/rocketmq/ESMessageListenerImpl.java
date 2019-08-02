@@ -30,7 +30,10 @@ public class ESMessageListenerImpl implements MessageListenerConcurrently {
                 String messageBody = new String(messageExt.getBody(), RemotingHelper.DEFAULT_CHARSET);
                 if("es".equals(messageExt.getTags())){
                    Long chapterId=Long.valueOf(messageBody);
-                   esManager.addESDataByChpterid(chapterId);
+                 boolean result= esManager.addESDataByChpterid(chapterId);
+                 if (!result){
+                     return ConsumeConcurrentlyStatus.RECONSUME_LATER; // 稍后再试
+                 }
                 }
 
                 // 输出消息内容
