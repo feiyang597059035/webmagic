@@ -218,7 +218,7 @@ public class MapTool {
                 }
 
                 // 子对象
-               /* for (String mKey : map.keySet()) {
+                for (String mKey : map.keySet()) {
                     if (mKey.contains(key + '_')) {
                         Method getter = property.getReadMethod(), setter = property.getWriteMethod();// 得到对应的 setter 方法
 
@@ -235,7 +235,7 @@ public class MapTool {
                             setter.invoke(bean, subBean); // 保存新建的 bean
                         }
                     }
-                }*/
+                }
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 
             }
