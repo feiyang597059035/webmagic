@@ -325,6 +325,67 @@ public class ElasticsearchUtil {
 
     }
 
+    /**
+     * sh
+     * @param index
+     * @param type
+     * @param searchRequestBuilder
+     * @param size
+     * @param fields
+     * @param sortField
+     * @param highlightField
+     * @return
+     */
+    public static List<Map<String, Object>> searchListDataBySearchCondition(String index, String type,
+                                                                            SearchRequestBuilder searchRequestBuilder,
+                                                            Integer size, String fields, String sortField, String highlightField) {
+
+        if (StringUtils.isNotEmpty(type)) {
+            searchRequestBuilder.setTypes(type.split(","));
+        }
+
+        if (StringUtils.isNotEmpty(highlightField)) {
+            HighlightBuilder highlightBuilder = new HighlightBuilder();
+            // 设置高亮字段
+            highlightBuilder.field(highlightField);
+            searchRequestBuilder.highlighter(highlightBuilder);
+        }
+
+
+
+        if (StringUtils.isNotEmpty(fields)) {
+            searchRequestBuilder.setFetchSource(fields.split(","), null);
+        }
+        searchRequestBuilder.setFetchSource(true);
+
+        if (StringUtils.isNotEmpty(sortField)) {
+            searchRequestBuilder.addSort(sortField, SortOrder.DESC);
+        }
+
+        if (size != null && size > 0) {
+            searchRequestBuilder.setSize(size);
+        }
+
+//打印的内容 可以在 Elasticsearch head 和 Kibana  上执行查询
+        LOGGER.info("\n{}", searchRequestBuilder);
+
+        SearchResponse searchResponse = searchRequestBuilder.execute().actionGet();
+
+        long totalHits = searchResponse.getHits().totalHits;
+        long length = searchResponse.getHits().getHits().length;
+
+        LOGGER.info("共查询到[{}]条数据,处理数据条数[{}]", totalHits, length);
+
+        if (searchResponse.status().getStatus() == 200) {
+// 解析对象
+            return setSearchResponse(searchResponse, highlightField);
+        }
+
+        return null;
+
+    }
+
+
 
 
     /**

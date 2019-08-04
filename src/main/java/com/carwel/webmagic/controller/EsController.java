@@ -3,6 +3,8 @@ package com.carwel.webmagic.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.carwel.webmagic.config.ConfigConstant;
 import com.carwel.webmagic.config.annotation.JsonParams;
+import com.carwel.webmagic.config.es.ElasticSearchCondition;
+import com.carwel.webmagic.config.es.SearchCondition;
 import com.carwel.webmagic.config.resultcode.BusinessException;
 import com.carwel.webmagic.config.resultcode.CodeMsg;
 import com.carwel.webmagic.config.resultcode.Result;
@@ -81,10 +83,12 @@ public class EsController {
     @ResponseBody
     public String getData(String id){
         if(StringUtils.isNotBlank(id)) {
-            BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
-            boolQuery.must(QueryBuilders.termQuery("contentName","剑来"));
+
+
+            SearchCondition searchCondition=new ElasticSearchCondition();
+            searchCondition.equal("contentName","剑来");
             List<Map<String, Object>> list=ElasticsearchUtil.searchListData(ConfigConstant.getEsChapterIndex(),
-                    ConfigConstant.getEsChapterType(),boolQuery,5,null,null,null);
+                    ConfigConstant.getEsChapterType(),searchCondition.build(),5,null,null,null);
 
           /*  Map<String, Object> map= ElasticsearchUtil.searchDataById(ConfigConstant.getEsChapterIndex(),
                     ConfigConstant.getEsChapterType(),id,null);

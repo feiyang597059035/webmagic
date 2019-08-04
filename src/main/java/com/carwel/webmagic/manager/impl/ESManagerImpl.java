@@ -2,6 +2,8 @@ package com.carwel.webmagic.manager.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.carwel.webmagic.config.ConfigConstant;
+import com.carwel.webmagic.config.es.ElasticSearchCondition;
+import com.carwel.webmagic.config.es.SearchCondition;
 import com.carwel.webmagic.dto.ChapterESInfoDTO;
 import com.carwel.webmagic.manager.ChapterManager;
 import com.carwel.webmagic.manager.ESManager;
@@ -64,10 +66,11 @@ public class ESManagerImpl implements ESManager {
     @Override
     public ChapterESInfoDTO getChapterESInfoDTOByContentId(Integer contentId, Integer chapterNum) {
         ChapterESInfoDTO chapterESInfoDTO=null;
-        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
-        boolQuery.must(QueryBuilders.termQuery("contentId",contentId)).must(QueryBuilders.termQuery("chapterNum",chapterNum));
+        SearchCondition searchCondition=new ElasticSearchCondition();
+        searchCondition.equal("contentId",contentId);
+        searchCondition.equal("chapterNum",chapterNum);
         List<Map<String, Object>> list=ElasticsearchUtil.searchListData(ConfigConstant.getEsChapterIndex(),
-                ConfigConstant.getEsChapterType(),boolQuery,1,null,null,null);
+                ConfigConstant.getEsChapterType(),searchCondition.build(),1,null,null,null);
         if (CollectionUtils.isNotEmpty(list)){
             chapterESInfoDTO=  MapTool.map2Bean(list.get(0),ChapterESInfoDTO.class);
         }
