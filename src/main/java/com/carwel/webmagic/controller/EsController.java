@@ -2,6 +2,10 @@ package com.carwel.webmagic.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.carwel.webmagic.config.ConfigConstant;
+import com.carwel.webmagic.config.annotation.JsonParams;
+import com.carwel.webmagic.config.resultcode.BusinessException;
+import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.Result;
 import com.carwel.webmagic.dto.ChapterESInfoDTO;
 import com.carwel.webmagic.util.DateTimeUtils;
 import com.carwel.webmagic.util.ElasticsearchUtil;
@@ -94,6 +98,15 @@ public class EsController {
             return "id为空";
         }
     }
+
+    @JsonParams
+    @RequestMapping("/sss")
+    public Result<Boolean> sss(String key){
+        if("1".equals(key)){
+            throw new BusinessException(CodeMsg.MOBILE_EMPTY);
+        }
+       return  Result.success(CodeMsg.SUCCESS);
+    };
 
    /* *//**
      * 插入记录
