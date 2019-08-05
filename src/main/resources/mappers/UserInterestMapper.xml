@@ -9,9 +9,10 @@
     <result column="category_type" jdbcType="INTEGER" property="categoryType" />
     <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
     <result column="gmt_modifiled" jdbcType="TIMESTAMP" property="gmtModifiled" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, content_id, delete_flag, category_type, gmt_created, gmt_modifiled
+    id, user_id, content_id, delete_flag, category_type, gmt_created, gmt_modifiled,status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="com.carwel.webmagic.model.UserInterest">
     insert into webmagic_user_interest (id, user_id, content_id,
       delete_flag, category_type, gmt_created, 
-      gmt_modifiled)
+      gmt_modifiled,status)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{contentId,jdbcType=INTEGER},
       #{deleteFlag,jdbcType=INTEGER}, #{categoryType,jdbcType=INTEGER}, #{gmtCreated,jdbcType=TIMESTAMP},
-      #{gmtModifiled,jdbcType=TIMESTAMP})
+      #{gmtModifiled,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.carwel.webmagic.model.UserInterest">
     insert into webmagic_user_interest
@@ -121,5 +122,12 @@
     from webmagic_user_interest
     where user_id = #{id,jdbcType=BIGINT}
   </select>
+
+  <update id="updateStatus" parameterType="map">
+    update webmagic_user_interest
+    set status = #{tarStatus},gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where
+    id = #{id} and status = #{currStatus}
+  </update>
 
 </mapper>

@@ -13,6 +13,12 @@ public class CodeMsg {
     public static CodeMsg VERIFY_CODE_ILLEGAL = new CodeMsg(500103, "验证码错误");
     public static CodeMsg ACCESS_LIMIT_REACHED = new CodeMsg(500104, "访问太频繁！");
     public static CodeMsg DATO_NOT_EXIST  = new CodeMsg(500104, "数据不存在！");
+    public static CodeMsg DUPLICATE_ERROR  = new CodeMsg(500105, "重复插入！");
+    public static CodeMsg STATUS_NULL_ERROR  = new CodeMsg(500106, "状态为null！");
+    public static CodeMsg STATUS_ILLEGAL_ERROR  = new CodeMsg(500107, "状态非法！");
+
+
+
     // 登录模块 5002XX
     public static CodeMsg SESSION_ERROR = new CodeMsg(500210, "Session不存在或者已经失效");
     public static CodeMsg PASSWORD_EMPTY = new CodeMsg(500211, "登录密码不能为空");

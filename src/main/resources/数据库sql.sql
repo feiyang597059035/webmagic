@@ -87,6 +87,7 @@ CREATE TABLE `webmagic_user_interest` (
   `delete_flag` int(11) DEFAULT NULL,
   `category_type` int(11) DEFAULT NULL,
   `gmt_created` datetime DEFAULT NULL,
-  `gmt_modifiled` datetime DEFAULT NULL,
+  `gmt_modifiled` datetime(3) DEFAULT NULL,
+  `status` int(8) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户关注';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户关注';

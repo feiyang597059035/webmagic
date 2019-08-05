@@ -6,6 +6,7 @@ import com.carwel.webmagic.model.UserInterest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 @Repository
 public class UserInterestDaoImpl implements UserInterestDao {
@@ -19,5 +20,15 @@ public class UserInterestDaoImpl implements UserInterestDao {
     @Override
     public List<UserInterest> getListUserInterestByUserId(String userId) {
         return userInterestMapper.getListUserInterestByUserId(userId);
+    }
+
+    @Override
+    public int updateStatus(Long id, Integer currStatus, Integer tarStatus) {
+        return userInterestMapper.updateStatus(id,currStatus,tarStatus,new Date());
+    }
+
+    @Override
+    public UserInterest getUserInterestById(Long id) {
+        return userInterestMapper.selectByPrimaryKey(id);
     }
 }

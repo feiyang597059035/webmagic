@@ -18,5 +18,7 @@ public class UserInterest {
 
     private String gmtModifiled;
 
+    private Integer status;
+
 
 }
