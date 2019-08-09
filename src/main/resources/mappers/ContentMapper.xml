@@ -18,15 +18,27 @@
     from webmagic_content
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByContentName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from webmagic_content
+    where content_name = #{contentName,jdbcType=VARCHAR}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from webmagic_content
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.carwel.webmagic.model.Content">
-    insert into webmagic_content (id, category_type, content_name, 
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into webmagic_content (category_type, content_name,
       finish_flag, gmt_created, gmt_modifiled
       )
-    values (#{id,jdbcType=INTEGER}, #{categoryType,jdbcType=INTEGER}, #{contentName,jdbcType=VARCHAR},
+    values ( #{categoryType,jdbcType=INTEGER}, #{contentName,jdbcType=VARCHAR},
       #{finishFlag,jdbcType=INTEGER}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModifiled,jdbcType=TIMESTAMP}
       )
   </insert>

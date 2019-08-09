@@ -30,10 +30,13 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.carwel.webmagic.model.UpdateChapter">
-    insert into webmagic_lastest_update_chapter (id, content_id, chapter_num, 
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into webmagic_lastest_update_chapter (content_id, chapter_num,
       chapter_name, lastest_update_time, gmt_created, 
       gmt_modifiled)
-    values (#{id,jdbcType=BIGINT}, #{contentId,jdbcType=INTEGER}, #{chapterNum,jdbcType=INTEGER}, 
+    values (#{contentId,jdbcType=INTEGER}, #{chapterNum,jdbcType=INTEGER},
       #{chapterName,jdbcType=VARCHAR}, #{lastestUpdateTime,jdbcType=TIMESTAMP}, #{gmtCreated,jdbcType=TIMESTAMP}, 
       #{gmtModifiled,jdbcType=TIMESTAMP})
   </insert>

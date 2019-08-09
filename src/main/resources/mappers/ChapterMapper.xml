@@ -27,10 +27,10 @@
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID() as id
     </selectKey>
-    insert into webmagic_chapter (id, chapter_num, chapter_name, 
+    insert into webmagic_chapter (chapter_num, chapter_name,
       chapter_context, gmt_created, gmt_modifild, 
       content_id)
-    values (#{id,jdbcType=BIGINT}, #{chapterNum,jdbcType=INTEGER}, #{chapterName,jdbcType=VARCHAR}, 
+    values (#{chapterNum,jdbcType=INTEGER}, #{chapterName,jdbcType=VARCHAR},
       #{chapterContext,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModifild,jdbcType=TIMESTAMP}, 
       #{contentId,jdbcType=INTEGER})
   </insert>

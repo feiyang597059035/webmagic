@@ -13,6 +13,9 @@ public interface ContentMapper {
 
     Content selectByPrimaryKey(Long id);
 
+
+    Content selectByContentName(String contentName);
+
     int updateByPrimaryKeySelective(Content record);
 
     int updateByPrimaryKey(Content record);

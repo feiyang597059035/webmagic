@@ -22,9 +22,12 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.carwel.webmagic.model.Category">
-    insert into webmagic_category (id, category_type, category_name, 
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into webmagic_category (category_type, category_name,
       gmt_created, gmt_modifiled)
-    values (#{id,jdbcType=BIGINT}, #{categoryType,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, 
+    values ( #{categoryType,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR},
       #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModifiled,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.carwel.webmagic.model.Category">

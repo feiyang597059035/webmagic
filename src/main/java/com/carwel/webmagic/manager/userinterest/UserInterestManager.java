@@ -1,14 +1,15 @@
 package com.carwel.webmagic.manager.userinterest;
 
-import com.carwel.webmagic.model.UserInterest;
+
+import com.carwel.webmagic.request.CreateUserInterestRequest;
 
 public interface UserInterestManager {
     /**
      * 创建
-     * @param userInterest
+     * @param createUserInterestRequest
      * @return
      */
-    public int createUserInterest(UserInterest userInterest);
+    public int createUserInterest(CreateUserInterestRequest createUserInterestRequest);
 
 
     /**

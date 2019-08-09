@@ -22,9 +22,12 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.carwel.webmagic.model.User">
-    insert into webmagic_user (id, user_name, user_id, 
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into webmagic_user (user_name, user_id,
       gmt_created, gmt_modifiled)
-    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+    values (#{userName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
       #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModifiled,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.carwel.webmagic.model.User">

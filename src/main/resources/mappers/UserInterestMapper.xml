@@ -25,10 +25,13 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.carwel.webmagic.model.UserInterest">
-    insert into webmagic_user_interest (id, user_id, content_id,
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into webmagic_user_interest (user_id, content_id,
       delete_flag, category_type, gmt_created, 
       gmt_modifiled,status)
-    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{contentId,jdbcType=INTEGER},
+    values (#{userId,jdbcType=VARCHAR}, #{contentId,jdbcType=INTEGER},
       #{deleteFlag,jdbcType=INTEGER}, #{categoryType,jdbcType=INTEGER}, #{gmtCreated,jdbcType=TIMESTAMP},
       #{gmtModifiled,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
   </insert>

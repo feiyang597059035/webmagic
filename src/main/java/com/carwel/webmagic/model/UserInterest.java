@@ -2,6 +2,8 @@ package com.carwel.webmagic.model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class UserInterest {
     private Long id;
@@ -14,9 +16,9 @@ public class UserInterest {
 
     private Integer categoryType;
 
-    private String gmtCreated;
+    private Date gmtCreated;
 
-    private String gmtModifiled;
+    private Date gmtModifiled;
 
     private Integer status;
 

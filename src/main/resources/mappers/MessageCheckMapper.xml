@@ -16,8 +16,11 @@
       and message_id = #{messageId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.carwel.webmagic.model.MessageCheck">
-    insert into webmagic_message_check (id, message_id,gmt_created,gmt_modifiled)
-    values (#{id,jdbcType=BIGINT}, #{messageId,jdbcType=VARCHAR},#{gmtCreated,jdbcType=TIMESTAMP},
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into webmagic_message_check ( message_id,gmt_created,gmt_modifiled)
+    values ( #{messageId,jdbcType=VARCHAR},#{gmtCreated,jdbcType=TIMESTAMP},
     #{gmtModifiled,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.carwel.webmagic.model.MessageCheck">

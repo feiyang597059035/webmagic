@@ -9,9 +9,11 @@ import com.carwel.webmagic.manager.userinterest.fsm.UserInterestOrderFSM;
 import com.carwel.webmagic.manager.userinterest.fsm.event.UserInterestAduitFailEvent;
 import com.carwel.webmagic.manager.userinterest.fsm.event.UserInterestCreateOrderEvent;
 import com.carwel.webmagic.model.UserInterest;
+import com.carwel.webmagic.request.CreateUserInterestRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
+@Component
 public class UserInterestManagerImpl implements UserInterestManager {
     @Autowired
     private UserInterestCreateOrderEvent userInterestCreateOrderEvent;
@@ -24,14 +26,15 @@ public class UserInterestManagerImpl implements UserInterestManager {
     /**
      * 创建
      *
-     * @param userInterest
+     * @param createUserInterestRequest
      * @return
      */
     @Override
     @Transactional(rollbackFor = Throwable.class)
-    public int createUserInterest(UserInterest userInterest) {
+    public int createUserInterest(CreateUserInterestRequest createUserInterestRequest) {
+
         MapContext context = new MapContext();
-        context.bind("request",userInterest);
+        context.bind("request",createUserInterestRequest);
         Integer ret =(Integer) userInterestOrderFSM.onEvent(null,context,userInterestCreateOrderEvent);
         return ret;
     }
