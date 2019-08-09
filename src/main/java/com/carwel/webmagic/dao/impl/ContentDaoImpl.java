@@ -34,4 +34,9 @@ public class ContentDaoImpl implements ContentDao {
     public Content getContentByContentName(String contentName) {
         return contentMapper.selectByContentName(contentName);
     }
+
+    @Override
+    public int updateContentById(Content content) {
+        return contentMapper.updateByPrimaryKeySelective(content);
+    }
 }

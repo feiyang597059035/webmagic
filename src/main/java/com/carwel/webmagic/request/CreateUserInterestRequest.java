@@ -13,5 +13,9 @@ public class CreateUserInterestRequest extends BaseDomain {
     private Integer categoryType;
     /**用户id**/
     private String userId;
+    /**类容id**/
+    private Integer contentId;
+    /**用户收藏id**/
+    private Long userInterestId;
 
 }

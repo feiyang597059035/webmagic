@@ -28,4 +28,36 @@ public class UserInterestServiceImpl implements UserInterestService {
        }
         return  Result.error(CodeMsg.SERVER_ERROR);
     }
+
+    /**
+     * 用户收藏 审核通过
+     *
+     * @param createUserInterestRequest
+     * @return
+     */
+    @Override
+    public Result<Boolean> aduitSuccessUserInterest(CreateUserInterestRequest createUserInterestRequest) {
+        Integer response= userInterestManager.aduitSuccessUserInterest(createUserInterestRequest);
+        if (response!=null&&response>=1){
+            boolean  result=true;
+            return  Result.write(CodeMsg.SUCCESS,result);
+        }
+        return  Result.error(CodeMsg.SERVER_ERROR);
+    }
+
+    /**
+     * 用户收藏 审核失败
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Result<Boolean> aduitFailUserInterest(Long id) {
+        Integer response= userInterestManager.aduitFali(id);
+        if (response!=null&&response>=1){
+             boolean  result=true;
+            return  Result.write(CodeMsg.SUCCESS,result);
+        }
+        return  Result.error(CodeMsg.SERVER_ERROR);
+    }
 }

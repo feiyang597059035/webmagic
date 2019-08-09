@@ -13,4 +13,6 @@ public interface ContentDao {
      * @return
      */
     Content getContentByContentName(String contentName);
+
+    int updateContentById(Content content);
 }

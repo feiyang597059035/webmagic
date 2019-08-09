@@ -128,7 +128,7 @@
 
   <update id="updateStatus" parameterType="map">
     update webmagic_user_interest
-    set status = #{tarStatus},gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    set status = #{tarStatus},gmt_modifiled = #{gmtModifiled,jdbcType=TIMESTAMP}
     where
     id = #{id} and status = #{currStatus}
   </update>

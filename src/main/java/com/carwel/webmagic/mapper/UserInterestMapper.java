@@ -24,5 +24,5 @@ public interface UserInterestMapper {
     List<UserInterest> getListUserInterestByUserId(String userId);
 
     int updateStatus(@Param("id") Long id, @Param("currStatus")Integer currStatus,
-                     @Param("tarStatus")Integer tarStatus, @Param("gmtModified") Date gmtModified);
+                     @Param("tarStatus")Integer tarStatus, @Param("gmtModifiled") Date gmtModified);
 }

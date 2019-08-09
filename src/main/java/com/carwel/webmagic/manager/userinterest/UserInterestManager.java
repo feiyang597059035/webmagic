@@ -18,4 +18,6 @@ public interface UserInterestManager {
      * @return
      */
     public int aduitFali(Long id);
+
+    public int aduitSuccessUserInterest(CreateUserInterestRequest createUserInterestRequest);
 }

@@ -9,7 +9,7 @@ public enum UserInterestStatusEnum implements  Status {
 
     CREATED("创建",0,"待审核"),
     SUCCESS("审核通过",10,"审核通过"),
-    FAIL("审核不通过",15,"审核不通过"),
+    FAIL("审核不通过",-1,"审核不通过"),
     ;
 
     private String name;
