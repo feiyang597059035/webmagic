@@ -2,6 +2,7 @@ package com.carwel.webmagic.controller;
 
 import com.carwel.webmagic.config.annotation.JsonParams;
 import com.carwel.webmagic.config.resultcode.Result;
+
 import com.carwel.webmagic.request.CreateUserInterestRequest;
 import com.carwel.webmagic.service.UserInterestService;
 import org.springframework.beans.factory.annotation.Autowired;

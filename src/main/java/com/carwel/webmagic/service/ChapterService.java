@@ -1,6 +1,7 @@
 package com.carwel.webmagic.service;
 
 import com.carwel.webmagic.config.resultcode.Result;
+
 import com.carwel.webmagic.dto.ChapterESInfoDTO;
 
 public interface ChapterService {

@@ -2,7 +2,7 @@ package com.carwel.webmagic.fsm;
 
 
 import com.carwel.webmagic.config.resultcode.BusinessException;
-import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.ErrorCode;
 import com.carwel.webmagic.enums.Status;
 import com.carwel.webmagic.fsm.context.Context;
 import com.carwel.webmagic.fsm.event.AbstractCreateEvent;
@@ -56,7 +56,7 @@ public abstract class AbstractOrderFSM implements OrderFSM{
         //捞取当前状态
         Status status = order.getFSMStatus();
         if(status == null){
-            throw new FSMException(CodeMsg.STATUS_NULL_ERROR.getMsg());
+            throw new FSMException(ErrorCode.STATUS_NULL_ERROR.getMessage());
         }
         //判断条件，查找fsmMap
         Map<Status, Map<Class, Status>> fsmMap = findMap(order,context);
@@ -67,7 +67,7 @@ public abstract class AbstractOrderFSM implements OrderFSM{
         }
 
         if(tarStatus == null){
-            throw new FSMException(CodeMsg.STATUS_ILLEGAL_ERROR.getMsg());
+            throw new FSMException(ErrorCode.STATUS_ILLEGAL_ERROR.getMessage());
         }
         //跳转目的状态，占锁
         int getLock  = updateStatus(order,context,tarStatus);
@@ -103,7 +103,7 @@ public abstract class AbstractOrderFSM implements OrderFSM{
             if(e.getErrorCode()==null){
                 throw e;
             }
-            throw new BusinessException(CodeMsg.SERVER_ERROR);
+            throw new BusinessException(ErrorCode.SERVER_ERROR);
         }
         return retValue;
     }

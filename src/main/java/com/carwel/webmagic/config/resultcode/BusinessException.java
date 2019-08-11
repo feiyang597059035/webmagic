@@ -6,19 +6,19 @@ public class BusinessException extends RuntimeException {
 
     private static final long serialVersionUID = 4005854589880923284L;
 
-    public BusinessException(CodeMsg codeMsg) {
+    public BusinessException(ErrorCode codeMsg) {
         this.code = codeMsg.getCode();
-        this.msg = codeMsg.getMsg();
+        this.msg = codeMsg.getMessage();
     }
 
-    private int code;
+    private String code;
     private String msg;
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

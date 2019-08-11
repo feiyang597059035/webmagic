@@ -2,7 +2,7 @@ package com.carwel.webmagic.manager.userinterest.fsm.event;
 
 
 import com.carwel.webmagic.config.resultcode.BusinessException;
-import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.ErrorCode;
 import com.carwel.webmagic.dao.ContentDao;
 import com.carwel.webmagic.dao.UserInterestDao;
 import com.carwel.webmagic.enums.UserInterestStatusEnum;
@@ -58,7 +58,7 @@ public class UserInterestCreateOrderEvent extends AbstractCreateEvent {
             contentId=  contentDao.insert(content);
         }
         if (contentId==null||contentId.longValue()<0){
-            throw new BusinessException(CodeMsg.SERVER_ERROR);
+            throw new BusinessException(ErrorCode.SERVER_ERROR);
         }
         UserInterest userInterest=(UserInterest)order;
         userInterest.setContentId(contentId);

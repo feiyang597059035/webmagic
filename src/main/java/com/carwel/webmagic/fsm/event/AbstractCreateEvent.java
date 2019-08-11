@@ -1,7 +1,7 @@
 package com.carwel.webmagic.fsm.event;
 
 
-import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.ErrorCode;
 import com.carwel.webmagic.fsm.FSMException;
 import com.carwel.webmagic.fsm.Order;
 import com.carwel.webmagic.fsm.context.Context;
@@ -37,7 +37,7 @@ public abstract class AbstractCreateEvent implements Event{
             if(t instanceof DuplicateKeyException){
                 log.error("触发幂等,{}",order,t);
                 //抛fsm 异常后 系统直接处理掉了 改成TradeBusinessException
-               throw new FSMException(CodeMsg.DUPLICATE_ERROR.getMsg());
+               throw new FSMException(ErrorCode.DUPLICATE_ERROR.getMessage());
 
             }else{
                 throw t;

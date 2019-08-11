@@ -1,7 +1,9 @@
 package com.carwel.webmagic.service.impl;
 
-import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.ErrorCode;
 import com.carwel.webmagic.config.resultcode.Result;
+
+import com.carwel.webmagic.config.resultcode.Results;
 import com.carwel.webmagic.dto.ChapterESInfoDTO;
 import com.carwel.webmagic.manager.ESManager;
 import com.carwel.webmagic.service.ChapterService;
@@ -23,8 +25,8 @@ public class ChapterServiceImpl implements ChapterService {
     public Result<ChapterESInfoDTO> getChapterESInfoDTOByContentId(Integer contentId, Integer chapterNum) {
         ChapterESInfoDTO chapterESInfoDT=esManager.getChapterESInfoDTOByContentId(contentId,chapterNum);
         if (chapterESInfoDT!=null){
-            return  Result.write(CodeMsg.SUCCESS,chapterESInfoDT);
+            return  Results.success(chapterESInfoDT);
         }
-        return Result.error(CodeMsg.DATO_NOT_EXIST);
+        return Results.failure(ErrorCode.DATO_NOT_EXIST);
     }
 }

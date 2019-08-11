@@ -1,7 +1,9 @@
 package com.carwel.webmagic.service.impl;
 
-import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.ErrorCode;
 import com.carwel.webmagic.config.resultcode.Result;
+
+import com.carwel.webmagic.config.resultcode.Results;
 import com.carwel.webmagic.manager.userinterest.UserInterestManager;
 import com.carwel.webmagic.request.CreateUserInterestRequest;
 import com.carwel.webmagic.service.UserInterestService;
@@ -24,9 +26,9 @@ public class UserInterestServiceImpl implements UserInterestService {
        Integer response= userInterestManager.createUserInterest(createUserInterestRequest);
        if (response!=null&&response>=1){
            result=true;
-           return  Result.write(CodeMsg.SUCCESS,result);
+           return Results.success( result);
        }
-        return  Result.error(CodeMsg.SERVER_ERROR);
+        return  Results.failure(ErrorCode.SERVER_ERROR);
     }
 
     /**
@@ -40,9 +42,9 @@ public class UserInterestServiceImpl implements UserInterestService {
         Integer response= userInterestManager.aduitSuccessUserInterest(createUserInterestRequest);
         if (response!=null&&response>=1){
             boolean  result=true;
-            return  Result.write(CodeMsg.SUCCESS,result);
+            return  Results.success(result);
         }
-        return  Result.error(CodeMsg.SERVER_ERROR);
+        return  Results.failure(ErrorCode.SERVER_ERROR);
     }
 
     /**
@@ -56,8 +58,8 @@ public class UserInterestServiceImpl implements UserInterestService {
         Integer response= userInterestManager.aduitFali(id);
         if (response!=null&&response>=1){
              boolean  result=true;
-            return  Result.write(CodeMsg.SUCCESS,result);
+            return  Results.success(result);
         }
-        return  Result.error(CodeMsg.SERVER_ERROR);
+        return  Results.failure(ErrorCode.SERVER_ERROR);
     }
 }

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -23,12 +23,12 @@ public class GlobalExceptionHandler {
                 return mav;
             }*/
             BusinessException biz=(BusinessException)e;
-            return Result.write(biz.getCode(),biz.getMsg());
+            return Results.error(biz.getCode(),biz.getMsg());
         } else {
             if (isAjax(reqest)) {
-                return Result.write(CodeMsg.SERVER_ERROR, e.getMessage());
+                return Results.error(ErrorCode.SERVER_ERROR.getCode(), e.getMessage());
             } else {
-                ModelAndView mav = new ModelAndView();
+               /* ModelAndView mav = new ModelAndView();
                 mav.addObject("exception", e);
                 mav.addObject("url", reqest.getRequestURL());
                 if (response.getStatus() == 0) {
@@ -37,7 +37,8 @@ public class GlobalExceptionHandler {
                     mav.setViewName("hello");
                 }
 
-                return mav;
+                return mav;*/
+                return Results.error(ErrorCode.SERVER_ERROR.getCode(), e.getMessage());
             }
         }
 

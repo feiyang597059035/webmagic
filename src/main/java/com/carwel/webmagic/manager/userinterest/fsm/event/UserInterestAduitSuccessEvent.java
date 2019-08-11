@@ -2,7 +2,7 @@ package com.carwel.webmagic.manager.userinterest.fsm.event;
 
 
 import com.carwel.webmagic.config.resultcode.BusinessException;
-import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.ErrorCode;
 import com.carwel.webmagic.fsm.context.Context;
 import com.carwel.webmagic.fsm.event.AbstractUpdateEvent;
 import com.carwel.webmagic.manager.ContentManager;
@@ -28,7 +28,7 @@ public class UserInterestAduitSuccessEvent extends AbstractUpdateEvent<UserInter
             content.setUrl(createUserInterestRequest.getUrl());
             int response=contentManager.updateContentById(content);
             if (response<=0){
-                throw  new BusinessException(CodeMsg.SERVER_ERROR);
+                throw  new BusinessException(ErrorCode.SERVER_ERROR);
             }
         }
         return 1;

@@ -1,18 +1,18 @@
 package com.carwel.webmagic.fsm;
 
 
-import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.ErrorCode;
 
 public class FSMException extends RuntimeException{
 
-    private CodeMsg codeMsg;
+    private ErrorCode codeMsg;
 
     public FSMException(String message) {
         super(message);
     }
 
-    public FSMException(CodeMsg codeMsg) {
-        super(codeMsg.getMsg());
+    public FSMException(ErrorCode codeMsg) {
+        super(codeMsg.getMessage());
         this.codeMsg = codeMsg;
     }
 
@@ -20,7 +20,7 @@ public class FSMException extends RuntimeException{
         super(message, cause);
     }
 
-    public CodeMsg getErrorCode() {
+    public ErrorCode getErrorCode() {
         return codeMsg;
     }
 }

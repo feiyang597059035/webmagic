@@ -1,7 +1,7 @@
 package com.carwel.webmagic.manager.userinterest.impl;
 
 import com.carwel.webmagic.config.resultcode.BusinessException;
-import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.ErrorCode;
 import com.carwel.webmagic.dao.UserInterestDao;
 import com.carwel.webmagic.fsm.context.MapContext;
 
@@ -63,7 +63,7 @@ public class UserInterestManagerImpl implements UserInterestManager {
 
         Integer resp = (Integer) userInterestOrderFSM.onEvent(order,null,userInterestAduitFailEvent);
         if (resp==null||resp.intValue()<=0){
-            throw  new BusinessException(CodeMsg.SERVER_ERROR);
+            throw  new BusinessException(ErrorCode.SERVER_ERROR);
         }
         return resp;
     }
@@ -77,7 +77,7 @@ public class UserInterestManagerImpl implements UserInterestManager {
         context.bind("request",createUserInterestRequest);
         Integer resp = (Integer) userInterestOrderFSM.onEvent(order,context,userInterestAduitSuccessEvent);
         if (resp==null||resp.intValue()<=0){
-            throw  new BusinessException(CodeMsg.SERVER_ERROR);
+            throw  new BusinessException(ErrorCode.SERVER_ERROR);
         }
         return resp;
     }

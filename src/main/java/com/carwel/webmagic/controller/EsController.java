@@ -6,17 +6,13 @@ import com.carwel.webmagic.config.annotation.JsonParams;
 import com.carwel.webmagic.config.es.ElasticSearchCondition;
 import com.carwel.webmagic.config.es.SearchCondition;
 import com.carwel.webmagic.config.resultcode.BusinessException;
-import com.carwel.webmagic.config.resultcode.CodeMsg;
+import com.carwel.webmagic.config.resultcode.ErrorCode;
 import com.carwel.webmagic.config.resultcode.Result;
-import com.carwel.webmagic.dto.ChapterESInfoDTO;
+
+import com.carwel.webmagic.config.resultcode.Results;
 import com.carwel.webmagic.util.DateTimeUtils;
 import com.carwel.webmagic.util.ElasticsearchUtil;
-import com.carwel.webmagic.util.MapTool;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.lucene.search.BooleanQuery;
-import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -107,9 +103,9 @@ public class EsController {
     @RequestMapping("/sss")
     public Result<Boolean> sss(String key){
         if("1".equals(key)){
-            throw new BusinessException(CodeMsg.MOBILE_EMPTY);
+            throw new BusinessException(ErrorCode.BIND_ERROR);
         }
-       return  Result.success(CodeMsg.SUCCESS);
+       return Results.success(Boolean.TRUE);
     };
 
    /* *//**
